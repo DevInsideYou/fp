@@ -68,10 +68,10 @@ object Program:
 
   val value =
     te._1
-      .map(println)
+      .map(b => println(b))
       .map(_ => println("─" * 50))
       .map(_ => te._2)
-      .map(println)
+      .map(b => println(b))
       .map(_ => println("─" * 50))
 
     // IO.delay {
