@@ -68,11 +68,11 @@ object Program:
 
   val value =
     te._1
-      .map(b => IO.delay(println(b)))
-      .map(_ => IO.delay(println("─" * 50)))
-      .map(_ => te._2)
-      .map(b => IO.delay(println(b)))
-      .map(_ => IO.delay(println("─" * 50)))
+      .flatMap(b => IO.delay(println(b)))
+      .flatMap(_ => IO.delay(println("─" * 50)))
+      .flatMap(_ => te._2)
+      .flatMap(b => IO.delay(println(b)))
+      .flatMap(_ => IO.delay(println("─" * 50)))
 
     // IO.delay {
     //   val _ = println("─" * 50)

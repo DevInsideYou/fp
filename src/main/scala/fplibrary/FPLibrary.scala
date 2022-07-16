@@ -11,6 +11,16 @@ final case class IO[+A](unsafeRun: Thunk[A]):
       b
     }
 
+  def flatMap[B](f: A => IO[B]): IO[B] =
+    IO.delay {
+      val a = unsafeRun()
+      val iob = f(a)
+
+      val b = iob.unsafeRun()
+
+      b
+    }
+
 object IO:
   def delay[A](a: => A): IO[A] =
     IO(() => a)
