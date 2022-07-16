@@ -22,11 +22,13 @@ package fp
 
   println(firstBankAccount.balance)
 
-  firstBankAccount.deposit(amount = 20)
+  val _ =
+    firstBankAccount.deposit(amount = 20)
 
   println(firstBankAccount.balance)
 
-  firstBankAccount.withdraw(amount = 5)
+  val _ =
+    firstBankAccount.withdraw(amount = 5)
 
   println(firstBankAccount.balance)
 
