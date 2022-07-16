@@ -42,60 +42,29 @@ object Program:
 
   // println(tf)
 
-  val oldValue =
-    IO.delay {
-      println("─" * 50)
-
-      println(e.unsafeRun())
-      println("─" * 50)
-
-      println(te._1.unsafeRun())
-      println("─" * 50)
-
-      println(te._2.unsafeRun())
-      println("─" * 50)
-
-      println(f.unsafeRun())
-      println("─" * 50)
-
-      println(tf._1.unsafeRun())
-      println("─" * 50)
-
-      println(tf._2.unsafeRun())
-
-      println("─" * 50)
-    }
-
   val value =
-    te._1
-      .flatMap(b => IO.delay(println(b)))
-      .flatMap(_ => IO.delay(println("─" * 50)))
-      .flatMap(_ => te._2)
-      .flatMap(b => IO.delay(println(b)))
-      .flatMap(_ => IO.delay(println("─" * 50)))
+    for
+      _ <- IO.delay(println("─" * 50))
 
-    // IO.delay {
-    //   val _ = println("─" * 50)
+      _ <- e.map(println)
+      _ <- IO.delay(println("─" * 50))
 
-    //   val _ = e.map(println)
-    //   val _ = println("─" * 50)
+      _ <- te._1.map(println)
+      _ <- IO.delay(println("─" * 50))
 
-    //   val _ = te._1.map(println)
-    //   val _ = println("─" * 50)
+      _ <- te._2.map(println)
+      _ <- IO.delay(println("─" * 50))
 
-    //   val _ = te._2.map(println)
-    //   val _ = println("─" * 50)
+      _ <- f.map(println)
+      _ <- IO.delay(println("─" * 50))
 
-    //   val _ = f.map(println)
-    //   val _ = println("─" * 50)
+      _ <- tf._1.map(println)
+      _ <- IO.delay(println("─" * 50))
 
-    //   val _ = tf._1.map(println)
-    //   val _ = println("─" * 50)
+      _ <- tf._2.map(println)
 
-    //   val _ = tf._2.map(println)
-
-    //   val _ = println("─" * 50)
-    // }
+      _ <- IO.delay(println("─" * 50))
+    yield ()
 
 object Mutability extends FPApp:
   override lazy val run =
