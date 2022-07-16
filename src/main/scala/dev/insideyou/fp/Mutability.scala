@@ -19,26 +19,25 @@ import scala.util.chaining.*
     def withdraw(amount: Int): Unit =
       currentBalance -= amount
 
-  val a = 1
-  val ta = (a, a)
-  println(ta)
+    override def toString: String =
+      s"MutableBankAccount($balance)"
+
+  val e = { println("producing 1"); MutableBankAccount(1) }
+  // e.withdraw(amount = 1)
+
+  val te = (e, e)
+  println(te)
 
   println("─" * 50)
 
-  val b = 1
-  val tb = (1, 1)
-  println(tb)
+  val f = { println("producing 1"); MutableBankAccount(1) }
+  // f.withdraw(amount = 1)
 
-  println("─" * 50)
+  val tf = (
+    { println("producing 1"); MutableBankAccount(1) },
+    { println("producing 1"); MutableBankAccount(1) },
+  )
 
-  val c = { println("producing 1"); 1 }
-  val tc = (c, c)
-  println(tc)
-
-  println("─" * 50)
-
-  val d = { println("producing 1"); 1 }
-  val td = ({ println("producing 1"); 1 }, { println("producing 1"); 1 })
-  println(td)
+  println(tf)
 
   println("─" * 50)
