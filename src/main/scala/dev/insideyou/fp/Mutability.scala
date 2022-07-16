@@ -1,14 +1,7 @@
 package dev.insideyou
 package fp
 
-extension [A](self: A)
-  def pipe[B](f: A => B): B =
-    f(self)
-
-  def tap[B](f: A => B): A =
-    f(self)
-
-    self
+import scala.util.chaining.*
 
 @main def Mutability(args: String*): Unit =
   println("─" * 50)
