@@ -17,19 +17,13 @@ package fp
     def withdraw(amount: Int): Unit =
       currentBalance -= amount
 
-  val firstBankAccount =
-    MutableBankAccount(initialBalance = 0)
+  val bankAccount =
+    val result = MutableBankAccount(initialBalance = 0)
+    result.deposit(amount = 20)
+    result.withdraw(amount = 5)
 
-  println(firstBankAccount.balance)
+    result
 
-  val _ =
-    firstBankAccount.deposit(amount = 20)
-
-  println(firstBankAccount.balance)
-
-  val _ =
-    firstBankAccount.withdraw(amount = 5)
-
-  println(firstBankAccount.balance)
+  println(bankAccount.balance)
 
   println("─" * 50)

@@ -11,19 +11,11 @@ package fp
     def withdraw(amount: Int): ImmutableBankAccount =
       ImmutableBankAccount(balance - amount)
 
-  val firstBankAccount =
+  val bankAccount =
     ImmutableBankAccount(balance = 0)
+      .deposit(amount = 20)
+      .withdraw(amount = 5)
 
-  println(firstBankAccount.balance)
-
-  val secondBankAccount =
-    firstBankAccount.deposit(amount = 20)
-
-  println(secondBankAccount.balance)
-
-  val thirdBankAccount =
-    secondBankAccount.withdraw(amount = 5)
-
-  println(thirdBankAccount.balance)
+  println(bankAccount.balance)
 
   println("─" * 50)
