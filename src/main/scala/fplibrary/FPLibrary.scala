@@ -14,3 +14,10 @@ final case class IO[+A](unsafeRun: Thunk[A]):
 object IO:
   def delay[A](a: => A): IO[A] =
     IO(() => a)
+
+abstract class FPApp extends App:
+  def run: IO[Any]
+
+  print(scala.Console.GREEN)
+  run.unsafeRun()
+  print(scala.Console.RESET)
