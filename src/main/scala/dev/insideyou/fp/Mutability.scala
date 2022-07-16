@@ -42,7 +42,7 @@ object Program:
 
   // println(tf)
 
-  val value =
+  val oldValue =
     IO.delay {
       println("─" * 50)
 
@@ -64,6 +64,30 @@ object Program:
       println(tf._2.unsafeRun())
 
       println("─" * 50)
+    }
+
+  val value =
+    IO.delay {
+      val _ = println("─" * 50)
+
+      val _ = e.map(println)
+      val _ = println("─" * 50)
+
+      val _ = te._1.map(println)
+      val _ = println("─" * 50)
+
+      val _ = te._2.map(println)
+      val _ = println("─" * 50)
+
+      val _ = f.map(println)
+      val _ = println("─" * 50)
+
+      val _ = tf._1.map(println)
+      val _ = println("─" * 50)
+
+      val _ = tf._2.map(println)
+
+      val _ = println("─" * 50)
     }
 
 object Mutability extends FPApp:
