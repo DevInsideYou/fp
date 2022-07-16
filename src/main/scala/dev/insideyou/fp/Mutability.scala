@@ -23,7 +23,7 @@ import scala.util.chaining.*
       s"MutableBankAccount($balance)"
 
   val e = { println("producing 1"); MutableBankAccount(1) }
-  // e.withdraw(amount = 1)
+  // e.pipe(_.withdraw(amount = 1))
 
   val te = (e, e)
   println(te)
@@ -31,7 +31,7 @@ import scala.util.chaining.*
   println("─" * 50)
 
   val f = { println("producing 1"); MutableBankAccount(1) }
-  // f.withdraw(amount = 1)
+  // f.pipe(_.withdraw(amount = 1))
 
   val tf = (
     { println("producing 1"); MutableBankAccount(1) },

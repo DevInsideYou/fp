@@ -1,6 +1,8 @@
 package dev.insideyou
 package fp
 
+import scala.util.chaining.*
+
 @main def Immutability(args: String*): Unit =
   println("─" * 50)
 
@@ -15,7 +17,7 @@ package fp
       s"ImmutableBankAccount($balance)"
 
   val e = { println("producing 1"); ImmutableBankAccount(1) }
-  // e.withdraw(amount = 1)
+  // e.pipe(_.withdraw(amount = 1))
 
   val te = (e, e)
   println(te)
@@ -23,7 +25,7 @@ package fp
   println("─" * 50)
 
   val f = { println("producing 1"); ImmutableBankAccount(1) }
-  // f.withdraw(amount = 1)
+  // e.pipe(_.withdraw(amount = 1))
 
   val tf = (
     { println("producing 1"); ImmutableBankAccount(1) },
