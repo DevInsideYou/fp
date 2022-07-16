@@ -19,11 +19,26 @@ import scala.util.chaining.*
     def withdraw(amount: Int): Unit =
       currentBalance -= amount
 
-  val bankAccount =
-    MutableBankAccount(initialBalance = 0)
-      .tap(_.deposit(amount = 20))
-      .tap(_.withdraw(amount = 5))
+  val a = 1
+  val ta = (a, a)
+  println(ta)
 
-  println(bankAccount.balance)
+  println("─" * 50)
+
+  val b = 1
+  val tb = (1, 1)
+  println(tb)
+
+  println("─" * 50)
+
+  val c = { println("producing 1"); 1 }
+  val tc = (c, c)
+  println(tc)
+
+  println("─" * 50)
+
+  val d = { println("producing 1"); 1 }
+  val td = ({ println("producing 1"); 1 }, { println("producing 1"); 1 })
+  println(td)
 
   println("─" * 50)
