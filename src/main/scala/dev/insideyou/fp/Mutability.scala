@@ -3,6 +3,8 @@ package fp
 
 import scala.util.chaining.*
 
+import fplibrary.*
+
 @main def Mutability(args: String*): Unit =
   println("─" * 50)
 
@@ -22,7 +24,7 @@ import scala.util.chaining.*
     override def toString: String =
       s"MutableBankAccount($balance)"
 
-  val e = { println("producing 1"); MutableBankAccount(1) }
+  val e = IO.delay { println("producing 1"); MutableBankAccount(1) }
   // e.pipe(_.withdraw(amount = 1))
 
   val te = (e, e)
@@ -30,12 +32,12 @@ import scala.util.chaining.*
 
   println("─" * 50)
 
-  val f = { println("producing 1"); MutableBankAccount(1) }
+  val f = IO.delay { println("producing 1"); MutableBankAccount(1) }
   // f.pipe(_.withdraw(amount = 1))
 
   val tf = (
-    { println("producing 1"); MutableBankAccount(1) },
-    { println("producing 1"); MutableBankAccount(1) },
+    IO.delay { println("producing 1"); MutableBankAccount(1) },
+    IO.delay { println("producing 1"); MutableBankAccount(1) },
   )
 
   println(tf)
