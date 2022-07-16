@@ -31,3 +31,10 @@ abstract class FPApp extends App:
   print(scala.Console.GREEN)
   run.unsafeRun()
   print(scala.Console.RESET)
+
+object FPConsole:
+  def println[A](in: => A): IO[Unit] =
+    IO.delay(Console.println(in))
+
+  def readLine: IO[String] =
+    IO.delay(scala.io.StdIn.readLine())

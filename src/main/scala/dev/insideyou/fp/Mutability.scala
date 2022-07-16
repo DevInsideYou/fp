@@ -46,7 +46,8 @@ object Program:
     for
       _ <- IO.delay(println("─" * 50))
 
-      _ <- e.flatMap(b => IO.delay(println(b)))
+      // _ <- e.flatMap(b => IO.delay(println(b)))
+      _ <- e.flatMap(FPConsole.println)
       _ <- IO.delay(println("─" * 50))
 
       _ <- te._1.map(println)
