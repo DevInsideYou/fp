@@ -46,20 +46,20 @@ import fplibrary.*
 
   // ---------------------------------
 
-  e.unsafeRun()
+  println(e.unsafeRun())
   println("─" * 50)
 
-  te._1.unsafeRun()
+  println(te._1.unsafeRun())
   println("─" * 50)
 
-  te._2.unsafeRun()
+  println(te._2.unsafeRun())
   println("─" * 50)
 
-  f.unsafeRun()
+  println(f.unsafeRun())
   println("─" * 50)
 
-  tf._1.unsafeRun()
+  println(tf._1.unsafeRun())
   println("─" * 50)
 
-  tf._2.unsafeRun()
+  println(tf._2.unsafeRun())
   println("─" * 50)
