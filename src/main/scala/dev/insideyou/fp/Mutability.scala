@@ -67,28 +67,35 @@ object Program:
     }
 
   val value =
-    IO.delay {
-      val _ = println("─" * 50)
+    te._1
+      .map(println)
+      .map(_ => println("─" * 50))
+      .map(_ => te._2)
+      .map(println)
+      .map(_ => println("─" * 50))
 
-      val _ = e.map(println)
-      val _ = println("─" * 50)
+    // IO.delay {
+    //   val _ = println("─" * 50)
 
-      val _ = te._1.map(println)
-      val _ = println("─" * 50)
+    //   val _ = e.map(println)
+    //   val _ = println("─" * 50)
 
-      val _ = te._2.map(println)
-      val _ = println("─" * 50)
+    //   val _ = te._1.map(println)
+    //   val _ = println("─" * 50)
 
-      val _ = f.map(println)
-      val _ = println("─" * 50)
+    //   val _ = te._2.map(println)
+    //   val _ = println("─" * 50)
 
-      val _ = tf._1.map(println)
-      val _ = println("─" * 50)
+    //   val _ = f.map(println)
+    //   val _ = println("─" * 50)
 
-      val _ = tf._2.map(println)
+    //   val _ = tf._1.map(println)
+    //   val _ = println("─" * 50)
 
-      val _ = println("─" * 50)
-    }
+    //   val _ = tf._2.map(println)
+
+    //   val _ = println("─" * 50)
+    // }
 
 object Mutability extends FPApp:
   override lazy val run =
