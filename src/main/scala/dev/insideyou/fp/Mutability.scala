@@ -42,27 +42,29 @@ object Program:
 
   // println(tf)
 
+  val hyphens =
+    FPConsole.println("─" * 50)
+
   val value =
     for
-      _ <- IO.delay(println("─" * 50))
+      _ <- hyphens
 
-      // _ <- e.flatMap(b => IO.delay(println(b)))
       _ <- e.flatMap(FPConsole.println)
-      _ <- IO.delay(println("─" * 50))
+      _ <- hyphens
 
-      _ <- te._1.map(println)
-      _ <- IO.delay(println("─" * 50))
+      _ <- te._1.flatMap(FPConsole.println)
+      _ <- hyphens
 
-      _ <- te._2.map(println)
-      _ <- IO.delay(println("─" * 50))
+      _ <- te._2.flatMap(FPConsole.println)
+      _ <- hyphens
 
-      _ <- f.map(println)
-      _ <- IO.delay(println("─" * 50))
+      _ <- f.flatMap(FPConsole.println)
+      _ <- hyphens
 
-      _ <- tf._1.map(println)
-      _ <- IO.delay(println("─" * 50))
+      _ <- tf._1.flatMap(FPConsole.println)
+      _ <- hyphens
 
-      _ <- tf._2.map(println)
+      _ <- tf._2.flatMap(FPConsole.println)
 
       _ <- IO.delay(println("─" * 50))
     yield ()
