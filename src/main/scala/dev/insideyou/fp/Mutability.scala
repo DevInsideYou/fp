@@ -1,6 +1,15 @@
 package dev.insideyou
 package fp
 
+extension [A](self: A)
+  def pipe[B](f: A => B): B =
+    f(self)
+
+  def tap[B](f: A => B): A =
+    f(self)
+
+    self
+
 @main def Mutability(args: String*): Unit =
   println("─" * 50)
 
@@ -18,11 +27,9 @@ package fp
       currentBalance -= amount
 
   val bankAccount =
-    val result = MutableBankAccount(initialBalance = 0)
-    result.deposit(amount = 20)
-    result.withdraw(amount = 5)
-
-    result
+    MutableBankAccount(initialBalance = 0)
+      .tap(_.deposit(amount = 20))
+      .tap(_.withdraw(amount = 5))
 
   println(bankAccount.balance)
 
