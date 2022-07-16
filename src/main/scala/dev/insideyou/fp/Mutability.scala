@@ -25,7 +25,7 @@ import fplibrary.*
       s"MutableBankAccount($balance)"
 
   val e = IO.delay { println("producing 1"); MutableBankAccount(1) }
-  // e.pipe(_.withdraw(amount = 1))
+  e.map(_.withdraw(amount = 1))
 
   val te = (e, e)
   println(te)
@@ -33,7 +33,7 @@ import fplibrary.*
   println("─" * 50)
 
   val f = IO.delay { println("producing 1"); MutableBankAccount(1) }
-  // f.pipe(_.withdraw(amount = 1))
+  f.map(_.withdraw(amount = 1))
 
   val tf = (
     IO.delay { println("producing 1"); MutableBankAccount(1) },
