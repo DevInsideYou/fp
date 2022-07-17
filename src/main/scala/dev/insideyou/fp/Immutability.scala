@@ -3,9 +3,9 @@ package fp
 
 import scala.util.chaining.*
 
-@main def Immutability(args: String*): Unit =
-  println("─" * 50)
+import fplibrary.*
 
+object ImmutableProgram:
   final class ImmutableBankAccount(val balance: Int):
     def deposit(amount: Int): ImmutableBankAccount =
       ImmutableBankAccount(balance + amount)
@@ -16,22 +16,18 @@ import scala.util.chaining.*
     override def toString: String =
       s"ImmutableBankAccount($balance)"
 
-  val e = { println("producing 1"); ImmutableBankAccount(1) }
-  // e.pipe(_.withdraw(amount = 1))
+  val value =
+    import FPConsole.*
 
-  val te = (e, e)
-  println(te)
+    for
+      _ <- println("─" * 50)
+      b1 <- IO.delay(ImmutableBankAccount(balance = 0))
+      b2 <- IO.delay(b1.deposit(amount = 20))
+      b3 <- IO.delay(b2.withdraw(amount = 5))
+      _ <- println(b3)
+      _ <- println("─" * 50)
+    yield ()
 
-  println("─" * 50)
-
-  val f = { println("producing 1"); ImmutableBankAccount(1) }
-  // e.pipe(_.withdraw(amount = 1))
-
-  val tf = (
-    { println("producing 1"); ImmutableBankAccount(1) },
-    { println("producing 1"); ImmutableBankAccount(1) },
-  )
-
-  println(tf)
-
-  println("─" * 50)
+object Immutability extends FPApp:
+  override lazy val run =
+    ImmutableProgram.value
