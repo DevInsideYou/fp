@@ -46,27 +46,40 @@ object Program:
     FPConsole.println("─" * 50)
 
   val value =
+    import FPConsole.*
+
     for
       _ <- hyphens
 
-      _ <- e.flatMap(FPConsole.println)
+      b1 <- e
+      _ <- println(b1)
+
       _ <- hyphens
 
-      _ <- te._1.flatMap(FPConsole.println)
+      b2 <- te._1
+      _ <- println(b2)
+
       _ <- hyphens
 
-      _ <- te._2.flatMap(FPConsole.println)
+      b3 <- te._2
+      _ <- println(b3)
+
       _ <- hyphens
 
-      _ <- f.flatMap(FPConsole.println)
+      b4 <- f
+      _ <- println(b4)
+
       _ <- hyphens
 
-      _ <- tf._1.flatMap(FPConsole.println)
+      b5 <- tf._1
+      _ <- println(b5)
+
       _ <- hyphens
 
-      _ <- tf._2.flatMap(FPConsole.println)
+      b6 <- tf._2
+      _ <- println(b5)
 
-      _ <- IO.delay(println("─" * 50))
+      _ <- hyphens
     yield ()
 
 object Mutability extends FPApp:
