@@ -28,9 +28,7 @@ object IO:
 abstract class FPApp extends App:
   def run: IO[Any]
 
-  print(scala.Console.GREEN)
   run.unsafeRun()
-  print(scala.Console.RESET)
 
 object FPConsole:
   def println[A](in: => A): IO[Unit] =
