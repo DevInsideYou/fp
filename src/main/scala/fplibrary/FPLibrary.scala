@@ -2,28 +2,31 @@ package fplibrary
 
 type Thunk[+A] = () => A
 
-final case class IO[+A](unsafeRun: Thunk[A]):
-  def map[B](f: A => B): IO[B] =
-    IO.delay {
-      val a = unsafeRun()
-      val b = f(a)
-
-      b
-    }
-
-  def flatMap[B](f: A => IO[B]): IO[B] =
-    IO.delay {
-      val a = unsafeRun()
-      val iob = f(a)
-
-      val b = iob.unsafeRun()
-
-      b
-    }
+final case class IO[+A](unsafeRun: Thunk[A])
 
 object IO:
   def delay[A](a: => A): IO[A] =
     IO(() => a)
+
+  given Monad[IO] with
+    extension [A](io: IO[A])
+      def map[B](f: A => B): IO[B] =
+        IO.delay {
+          val a = io.unsafeRun()
+          val b = f(a)
+
+          b
+        }
+
+      def flatMap[B](f: A => IO[B]): IO[B] =
+        IO.delay {
+          val a = io.unsafeRun()
+          val iob = f(a)
+
+          val b = iob.unsafeRun()
+
+          b
+        }
 
 abstract class FPApp extends App:
   def run: IO[Any]
@@ -36,3 +39,9 @@ object FPConsole:
 
   def readLine: IO[String] =
     IO.delay(scala.io.StdIn.readLine())
+
+trait Functor[F[_]]:
+  extension [A](fa: F[A]) def map[B](f: A => B): F[B]
+
+trait Monad[F[_]] extends Functor[F]:
+  extension [A](fa: F[A]) def flatMap[B](f: A => F[B]): F[B]
