@@ -3,7 +3,7 @@ package fp
 
 import fplibrary.*
 
-def program[F[_]](using Monad[F])(using FPC: FPConsole[F]): F[Unit] =
+def program[F[_]: Monad](using FPC: FPConsole[F]): F[Unit] =
   import FPC.*
 
   for
