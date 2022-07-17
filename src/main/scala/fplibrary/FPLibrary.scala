@@ -40,8 +40,15 @@ object FPConsole:
   def readLine: IO[String] =
     IO.delay(scala.io.StdIn.readLine())
 
+  given FPConsole[IO] with
+    export FPConsole.*
+
 trait Functor[F[_]]:
   extension [A](fa: F[A]) def map[B](f: A => B): F[B]
 
 trait Monad[F[_]] extends Functor[F]:
   extension [A](fa: F[A]) def flatMap[B](f: A => F[B]): F[B]
+
+trait FPConsole[F[_]]:
+  def println[A](in: => A): F[Unit]
+  def readLine: F[String]

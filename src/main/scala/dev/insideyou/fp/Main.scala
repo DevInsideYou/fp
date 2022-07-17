@@ -3,8 +3,8 @@ package fp
 
 import fplibrary.*
 
-val program =
-  import FPConsole.*
+def program[F[_]](using M: Monad[F], FPC: FPConsole[F]): F[Unit] =
+  import FPC.*
 
   for
     _ <- println("─" * 50)
